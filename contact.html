@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/15f5047879.js" crossorigin="anonymous"></script>
+    <title>contact</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: black;
+            color: white;
+            font-family: Arial, Helvetica, sans-serif;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-attachment: fixed;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            z-index: 999;
+            margin-top: 3rem;
+        }
+
+        .navbar.hide {
+            transform: translateY(-300%);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .logo a {
+            font-size: 2rem;
+            color: white;
+            text-decoration: none;
+            font-family: Arial, Helvetica, sans-serif;
+            font-weight: lighter;
+            margin-left: 3rem;
+        }
+
+        .navbar ul {
+            list-style: none;
+            display: flex;
+            gap: 4rem;
+            margin-left: 16rem;
+        }
+
+        .navbar ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1rem;
+            font-family: Arial, Helvetica, sans-serif;
+            font-weight: lighter;
+        }
+
+        .navbar ul li a:hover {
+            color: rgb(247, 246, 155);
+        }
+
+        /* Hamburger Menu Icon */
+        .menu-toggle {
+            display: none;
+            font-size: 1.8rem;
+            color: white;
+            cursor: pointer;
+            margin: auto;
+        }
+
+        @media (max-width: 768px) {
+    .social-icons {
+        display: none;
+    }
+}
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .navbar ul {
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: rgba(0, 0, 0, 0.95);
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.3s ease-in-out;
+            }
+
+            .navbar ul.open {
+                max-height: 300px;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+        }
+
+        .fa-brands.fa-facebook-f.fa-xl{
+            color: white;
+            margin-right: 1rem;
+        }
+        .fa-brands.fa-instagram.fa-xl{
+            color: white;
+        }
+        
+        .details {
+            padding: 120px 10% 2rem;
+            text-shadow: 0px 0px 10px black;
+            animation-duration: 1.5s;
+            animation-timing-function: ease;
+            animation-name: fade;
+        }
+
+        .details h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            font-family: Arial, Helvetica, sans-serif;
+            font-weight: lighter;
+            margin-left: 4.8rem;
+            margin-top: 5.3rem;
+        }
+
+        .details p {
+            font-size: 1rem;
+            line-height: 1.6;
+            font-family: Arial, Helvetica, sans-serif;
+            font-weight: lighter;
+            margin-left: 6.5rem;
+            margin-top: 3rem;
+        }
+
+        .footer {
+            padding: 2rem 10%;
+            font-size: 1rem;
+            margin-top: 10rem;
+            font-family: Arial, Helvetica, sans-serif;
+            font-weight: lighter;HTML CODING/web 1/contact.html
+            animation-name: fade;
+            animation-duration: 1.5s;
+            animation-timing-function: ease;
+        }
+        @keyframes fade{
+                0%{opacity: 0;}
+                to{opacity: 1;}
+            }
+
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">
+            <a href="home.html">A's Photography</a>
+        </div>
+        <div class="menu-toggle" id="menu-toggle">
+            <i class="fas fa-bars"></i>
+        </div>
+        <ul id="nav-links">
+            <li><a href="about.html">About</a></li>
+            <li><a href="portfolio.html">Portfolio</a></li>
+            <li><a href="bookings.html">Bookings</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <div class="social-icons">
+            <i class="fa-brands fa-facebook-f fa-xl"></i>
+            <i class="fa-brands fa-instagram fa-xl"></i>
+        </div>
+    </nav>
+
+    <div class="details">
+        <h1>Contact</h1>
+        <p>
+            For more inquiries just contact or message us at:<br><br>
+            <strong>Email:</strong> andotbaldot22@gmail.com<br>
+            <strong>Facebook:</strong> Andrey<br>
+            <strong>Instagram:</strong> any_dreyyy<br>
+            <strong>Phone:</strong> 09489683367
+        </p>
+    </div>
+
+    <footer class="footer">
+        <p>A's Photography © 2025 All rights reserved.<br>
+        Studio location: San Jose, Aurora, Zamboanga Del Sur</p>
+    </footer>
+
+    <script>
+        const toggle = document.getElementById('menu-toggle');
+        const navLinks = document.getElementById('nav-links');
+
+        toggle.addEventListener('click', () => {
+            navLinks.classList.toggle('open');
+        });
+
+    const navbar = document.querySelector('.navbar');
+
+    toggle.addEventListener('click', () => {
+        navLinks.classList.toggle('open');
+    });
+
+    // Hide navbar on scroll down
+    let lastScrollTop = 0;
+    window.addEventListener('scroll', () => {
+        const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+
+        if (currentScroll > lastScrollTop) {
+            // Scrolling down
+            navbar.classList.add('hide');
+        } else {
+            // Scrolling up
+            navbar.classList.remove('hide');
+        }
+
+        lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
+    });
+
+
+    </script>
+</body>
+</html>

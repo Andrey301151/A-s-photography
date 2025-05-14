@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://kit.fontawesome.com/15f5047879.js" crossorigin="anonymous"></script>
+    <title>Home</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: black;
+            color: white;
+            font-family: Arial, Helvetica, sans-serif;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-attachment: fixed;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            z-index: 999;
+            margin-top: 3rem;
+            text-shadow: 0px 0px 10px black;
+        }
+
+        .logo a {
+            font-size: 2rem;
+            color: white;
+            text-decoration: none;
+            font-family: Arial, Helvetica, sans-serif;
+            font-weight: lighter;
+            margin-left: 3rem;
+        }
+
+        .navbar ul {
+            list-style: none;
+            display: flex;
+            gap: 4rem;
+            margin-left: 16rem;
+        }
+
+        .navbar ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1rem;
+            font-family: Arial, Helvetica, sans-serif;
+            font-weight: lighter;
+        }
+
+        .navbar ul li a:hover {
+            color: rgb(247, 246, 155);
+        }
+
+        .menu-toggle {
+            display: none;
+            font-size: 1.8rem;
+            color: white;
+            cursor: pointer;
+            margin: auto;
+        }
+
+        @media (max-width: 768px) {
+            .navbar ul {
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: rgba(0, 0, 0, 0.95);
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.3s ease-in-out;
+            }
+
+            .navbar ul.open {
+                max-height: 300px;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+        }
+
+        .fa-brands.fa-facebook-f.fa-xl {
+            color: white;
+            margin-right: 1rem;
+        }
+
+        .fa-brands.fa-instagram.fa-xl {
+            color: white;
+        }
+
+        .details {
+            padding: 2rem 1rem;
+            text-shadow: 0px 0px 10px black;
+            animation: tae 2s ease, fade 2s ease;
+        }
+
+        .details h1 {
+            font-size: 2.5rem;
+            margin-left: 4rem;
+            font-family: Arial, Helvetica, sans-serif;
+            font-weight: lighter;
+        }
+
+        .details p {
+            font-size: 1rem;
+            line-height: 1.6;
+            max-width: 25rem;
+            margin: auto;
+            text-align: justify;
+        }
+
+        .footer {
+            padding: 2rem 10%;
+            font-size: 1rem;
+            animation: fade 2s ease;
+            font-family: Arial, Helvetica, sans-serif;
+            font-weight: lighter;
+        }
+
+        .row {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 6rem 1rem 2rem;
+            gap: 2rem;
+        }
+
+        .column {
+            flex: 1;
+            max-width: 600px;
+            padding: 1rem;
+            margin-top: 4rem;
+        }
+
+        .prof, .prof1 {
+            width: 65%;
+            max-width: 80%;
+            height: auto;
+            display: block;
+            margin: 3rem auto;
+            border-radius: 2px;
+            margin-top: 2rem;
+            animation-name: fade;
+            animation-duration: 2s;
+            animation-timing-function: ease;
+        }
+
+        @keyframes fade {
+            from {opacity: 0;}
+            to {opacity: 1;}
+        }
+
+        @keyframes tae {
+            from {transform: translateY(300px);}
+            to {transform: translateY(0);}
+        }
+
+        /* ---------- RESPONSIVE ENHANCEMENTS ---------- */
+        @media (max-width: 480px) {
+            .logo a {
+                font-size: 1.5rem;
+                margin-left: 1rem;
+            }
+
+            .navbar {
+                padding: 1rem;
+                margin-top: 2rem;
+            }
+
+            .navbar ul {
+                gap: 2rem;
+            }
+
+            .details {
+                padding: 1rem;
+            }
+
+            .details h1 {
+                font-size: 1.8rem;
+                margin-left: 1rem;
+                text-align: center;
+            }
+
+            .details p {
+                font-size: 0.95rem;
+                padding: 0 1rem;
+                max-width: 100%;
+                text-align: justify;
+            }
+
+            .column {
+                flex: 1 1 100%;
+                padding: 0.5rem;
+                margin-top: 2rem;
+            }
+
+            .prof, .prof1 {
+                width: 90%;
+                max-width: 100%;
+            }
+
+            .footer {
+                padding: 1rem;
+                font-size: 0.9rem;
+                text-align: center;
+            }
+
+            .social-icons {
+                display: none;
+            }
+        }
+
+        @media (max-width: 360px) {
+            .navbar ul.open {
+                gap: 1rem;
+            }
+
+            .details h1 {
+                font-size: 1.5rem;
+            }
+
+            .details p {
+                font-size: 0.85rem;
+            }
+
+            .logo a {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">
+            <a href="home.html">A's Photography</a>
+        </div>
+        <div class="menu-toggle" id="menu-toggle">
+            <i class="fas fa-bars"></i>
+        </div>
+        <ul id="nav-links">
+            <li><a href="about.html">About</a></li>
+            <li><a href="portfolio.html">Portfolio</a></li>
+            <li><a href="bookings.html">Bookings</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <div class="social-icons">
+            <i class="fa-brands fa-facebook-f fa-xl"></i>
+            <i class="fa-brands fa-instagram fa-xl"></i>
+        </div>
+    </nav>
+
+    <div class="row">
+        <div class="column">
+            <div class="details">
+                <h1>Biography</h1>
+                <p>
+                    <br>
+                    My name is Andrey B. Piañar the photography owner,
+                    and my story with photography began during my senior
+                    high school years though in truth, I think the passion
+                    was always quietly there, waiting to be discovered. I
+                    wasn’t just someone who liked taking pictures; I was
+                    someone who loved capturing emotion, meaning, and
+                    untold stories in a single frame. My turning point came
+                    when I became a member of Huyaka Media, our
+                    school’s media group. That was when things started to
+                    feel real when holding a camera didn’t just mean taking
+                    a photo, but being part of something bigger.<br>
+                    <br>
+                    Through Huyaka, I covered school events, documented
+                    achievements, and captured those in-between
+                    moments that made our high school days
+                    unforgettable. It taught me more than just technical
+                    skills it gave me purpose. I learned how to work as part
+                    of a creative team, how to observe scenes with intent,
+                    and how to stay ready for that one perfect shot that
+                    could sum up an entire story.<br>
+                    <br>
+                    When I entered college, I didn’t leave my camera or
+                    that drive behind. I joined the SCC ROTC Unit’s media
+                    team, and became one of the official photographers. It
+                    was a new environment, with its own challenges and
+                    energy. The ROTC was disciplined, intense, and
+                    dynamic exactly the kind of place where moments
+                    move fast and capturing them demands focus, instinct,
+                    and readiness. Whether it was documenting drills,
+                    ceremonies, or the candid pride in every cadet’s face, I
+                    felt proud to contribute through my lens.<br>
+                    <br>
+                    Photography, for me, is more than a skill it’s how I
+                    communicate. It’s how I preserve the energy of a live
+                    event, the story in a glance, the atmosphere of a place.
+                    Each photo I take is a piece of who I
+                    am, shaped by
+                    where I’ve been and what I’ve seen. From the humble
+                    beginnings in high school media to standing in
+                    formation with ROTC cadets, camera in hand, I’ve
+                    come to realize this isn’t just a passion. It’s a calling.
+                    And I know I’m just getting started.
+                    </p>
+                    </div>
+                    </div>
+                    <div class="column">
+                    <img class="prof" src="photo1.jpeg" alt="Profile 1">
+                    <img class="prof1" src="photo3.jpeg" alt="Profile 2">
+                    </div>
+                    </div>
+
+                    <footer class="footer">
+                        <p>A's Photography © 2025 All rights reserved.<br>
+                        Studio location: San Jose, Aurora, Zamboanga Del Sur</p>
+                    </footer>
+                    
+                    <script>
+                        const toggle = document.getElementById('menu-toggle');
+                        const navLinks = document.getElementById('nav-links');
+                    
+                        toggle.addEventListener('click', () => {
+                            navLinks.classList.toggle('open');
+                        });
+                    
+                        let lastScrollTop = 0;
+                        const navbar = document.querySelector('.navbar');
+                    
+                        window.addEventListener('scroll', () => {
+                            let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                    
+                            if (scrollTop > lastScrollTop) {
+                                navbar.style.top = "-100px";
+                            } else {
+                                navbar.style.top = "0";
+                            }
+                    
+                            lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+                        });
+                    </script>
+                </body>
+        </html>                    

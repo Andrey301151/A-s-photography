@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://kit.fontawesome.com/15f5047879.js" crossorigin="anonymous"></script>
+  <title>Bookings</title>
+  <style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        background: black;
+        color: white;
+        font-family: Arial, Helvetica, sans-serif;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-attachment: fixed;
+    }
+
+    .navbar {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem 2rem;
+        z-index: 999;
+        margin-top: 3rem;
+        transition: top 0.2s ease-in-out;
+    }
+
+    .logo a {
+        font-size: 2rem;
+        color: white;
+        text-decoration: none;
+        font-family: Arial, Helvetica, sans-serif;
+        font-weight: lighter;
+        margin-left: 3rem;
+    }
+
+    .navbar ul {
+        list-style: none;
+        display: flex;
+        gap: 4rem;
+        margin-left: 16rem;
+    }
+
+    .navbar ul li a {
+        color: white;
+        text-decoration: none;
+        font-weight: bold;
+        font-size: 1rem;
+        font-family: Arial, Helvetica, sans-serif;
+        font-weight: lighter;
+    }
+
+    .navbar ul li a:hover {
+        color: rgb(247, 246, 155);
+    }
+
+    /* Hamburger Menu Icon */
+    .menu-toggle {
+        display: none;
+        font-size: 1.8rem;
+        color: white;
+        cursor: pointer;
+        margin: auto;
+    }
+
+    /* Social Icons - Hide on small screens */
+    .social-icons {
+        display: flex;
+    }
+
+    .fa-brands {
+        color: white;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+        .navbar ul {
+            flex-direction: column;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-in-out;
+        }
+
+        .navbar ul.open {
+            max-height: 300px;
+        }
+
+        .menu-toggle {
+            display: block;
+        }
+
+        .social-icons {
+            display: none; /* Hide social icons on small screens */
+        }
+
+        /* Navbar links */
+        .navbar ul li a {
+            font-size: 1.2rem;
+            padding: 15px;
+            text-align: center;
+        }
+    }
+
+    @media (max-width: 480px) {
+    .social-icons {
+        display: none;
+    }
+}
+
+
+    /* Scrolling Effect for Navbar */
+    .fa-brands.fa-facebook-f.fa-xl {
+    color: white;
+    margin-right: 1.3rem;
+}
+
+.fa-brands.fa-instagram.fa-xl {
+    color: white;
+}
+
+
+    .container {
+        max-width: 600px;
+        margin: 40px auto;
+        background-color: black;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        animation-name: fade;
+        animation-duration: 2s;
+        animation-timing-function: ease;
+    }
+
+    h2 {
+        margin-bottom: 25px;
+        font-size: 2rem;
+        margin-top: 8rem;
+    }
+
+    label {
+        display: block;
+        margin-top: 15px;
+        font-weight: bold;
+    }
+
+    input, select {
+        width: 100%;
+        padding: 10px;
+        margin-top: 5px;
+        border-radius: 5px;
+        border: 1px solid white;
+        box-sizing: border-box;
+        background-color: black;
+        color: white;
+    }
+
+    .phone-group {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    .phone-group select {
+        flex: 1 1 35%;
+        background-color: black;
+        color: white;
+    }
+
+    .phone-group input {
+        flex: 1 1 60%;
+        background-color: black;
+    }
+
+    .date-group {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        gap: 10px;
+    }
+
+    .date-group select {
+        flex: 1 1 30%;
+    }
+
+    button {
+        margin-top: 25px;
+        padding: 12px;
+        width: 100%;
+        background-color: black;
+        color: white;
+        border-radius: 5px;
+        font-size: 16px;
+        cursor: pointer;
+        border-color: white;
+    }
+
+    button:hover {
+        background-color: white;
+        color: black;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 600px) {
+        .container {
+            margin: 20px;
+            padding: 20px;
+        }
+
+        h2 {
+            font-size: 20px;
+        }
+
+        button {
+            font-size: 14px;
+        }
+
+        .phone-group,
+        .date-group {
+            flex-direction: column;
+        }
+
+        .phone-group select,
+        .phone-group input,
+        .date-group select {
+            width: 100%;
+            flex: 1 1 100%;
+        }
+    }
+
+    .footer {
+        padding: 2rem 10%;
+        font-size: 1rem;
+        margin-top: 2rem;
+        font-family: Arial, Helvetica, sans-serif;
+        font-weight: lighter;
+        animation-name: fade;
+        animation-duration: 2s;
+        animation-timing-function: ease;
+    }
+    
+    @keyframes fade {
+        0% { opacity: 0; }
+        to { opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="logo">
+        <a href="home.html">A's Photography</a>
+    </div>
+    <div class="menu-toggle" id="menu-toggle">
+        <i class="fas fa-bars"></i>
+    </div>
+    <ul id="nav-links">
+        <li><a href="about.html">About</a></li>
+        <li><a href="portfolio.html">Portfolio</a></li>
+        <li><a href="bookings.html">Bookings</a></li>
+        <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <div class="social-icons">
+        <i class="fa-brands fa-facebook-f fa-xl"></i>
+        <i class="fa-brands fa-instagram fa-xl"></i>
+    </div>
+</nav>
+
+
+  <script>
+    const toggle = document.getElementById('menu-toggle');
+    const navLinks = document.getElementById('nav-links');
+
+    toggle.addEventListener('click', () => {
+        navLinks.classList.toggle('open');
+    });
+
+    let lastScrollTop = 0;
+    const navbar = document.querySelector('.navbar');
+
+    window.addEventListener('scroll', () => {
+        let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+        if (scrollTop > lastScrollTop) {
+            navbar.style.top = "-100px"; // Hide navbar when scrolling down
+        } else {
+            navbar.style.top = "0"; // Show navbar when scrolling up
+        }
+
+        lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+    });
+  </script>
+
+  <div class="container">
+    <h2>Book Your Appointment</h2>
+    <form action="https://formsubmit.co/andrey.pianar@sccpag.edu.ph" method="POST">
+      <label for="last-name">Last Name:</label>
+      <input type="text" id="last-name" name="last-name" required>
+
+      <label for="first-name">First Name:</label>
+      <input type="text" id="first-name" name="first-name" required>
+
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" required>
+
+      <label for="phone">Phone:</label>
+      <div class="phone-group">
+        <select name="country-code" required>
+          <option value="">Country-code</option>
+          <option value="+1">🇺🇸 +1 (USA)</option>
+          <option value="+44">🇬🇧 +44 (UK)</option>
+          <option value="+61">🇦🇺 +61 (Australia)</option>
+          <option value="+91">🇮🇳 +91 (India)</option>
+          <option value="+81">🇯🇵 +81 (Japan)</option>
+          <option value="+49">🇩🇪 +49 (Germany)</option>
+          <option value="+63">🇵🇭 +63 (Philippines)</option>
+          <option value="+86">🇨🇳 +86 (China)</option>
+          <option value="+971">🇦🇪 +971 (UAE)</option>
+        </select>
+        <input type="tel" id="phone" name="phone" placeholder="Phone" required>
+      </div>
+
+      <label for="address">Address:</label>
+      <input type="text" id="address" name="address" required>
+
+      <label>Date:</label>
+      <div class="date-group">
+        <select name="month" required>
+          <option value="">Month</option>
+          <option>January</option>
+          <option>February</option>
+          <option>March</option>
+          <option>April</option>
+          <option>May</option>
+          <option>June</option>
+          <option>July</option>
+          <option>August</option>
+          <option>September</option>
+          <option>October</option>
+          <option>November</option>
+          <option>December</option>
+        </select>
+
+        <select name="day" required>
+          <option value="">Day</option>
+          <option>1</option><option>2</option><option>3</option><option>4</option><option>5</option>
+          <option>6</option><option>7</option><option>8</option><option>9</option><option>10</option>
+          <option>11</option><option>12</option><option>13</option><option>14</option><option>15</option>
+          <option>16</option><option>17</option><option>18</option><option>19</option><option>20</option>
+          <option>21</option><option>22</option><option>23</option><option>24</option><option>25</option>
+          <option>26</option><option>27</option><option>28</option><option>29</option><option>30</option>
+          <option>31</option>
+        </select>
+
+        <select name="year" required>
+          <option value="">Year</option>
+          <script>
+            const currentYear = new Date().getFullYear();
+            for (let y = 2000; y <= currentYear; y++) {
+                document.write('<option>' + y + '</option>');
+            }
+          </script>
+        </select>
+      </div>
+
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+
+  <footer class="footer">
+    <p>A's Photography © 2025 All rights reserved.<br>
+    Studio location: San Jose, Aurora, Zamboanga Del Sur</p>
+  </footer>
+</body>
+</html>

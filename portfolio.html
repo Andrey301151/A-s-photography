@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>A's Photography</title>
+  <script src="https://kit.fontawesome.com/15f5047879.js" crossorigin="anonymous"></script>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: black;
+      color: white;
+      font-family: Arial, sans-serif;
+    }
+
+    .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            z-index: 999;
+            margin-top: 3rem;
+            transition: top 0.3s ease-in-out;
+        }
+
+        .logo a {
+            font-size: 2rem;
+            color: white;
+            text-decoration: none;
+            font-family: Arial, Helvetica, sans-serif;
+            font-weight: lighter;
+            margin-left: 3rem;
+        }
+
+        .navbar ul {
+            list-style: none;
+            display: flex;
+            gap: 4rem;
+            margin-left: 16rem;
+        }
+
+        .navbar ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: lighter;
+        }
+
+        .navbar ul li a:hover {
+            color: rgb(247, 246, 155);
+        }
+
+        .menu-toggle {
+            display: none;
+            font-size: 1.8rem;
+            color: white;
+            cursor: pointer;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 1.3rem;
+        }
+
+        .fa-brands.fa-facebook-f.fa-xl{
+            color: white;
+        }
+        .fa-brands.fa-instagram.fa-xl{
+            color: white;
+        }
+
+        @media (max-width: 768px) {
+    .navbar {
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .logo {
+        width: auto;
+        margin: 0.5rem 0;
+    }
+
+    .menu-toggle {
+        display: block;
+        margin-left: auto;
+    }
+
+    .navbar ul {
+        flex-direction: column;
+        width: 100%;
+        max-height: 0;
+        overflow: hidden;
+        background: rgba(0, 0, 0, 0.95);
+        transition: max-height 0.3s ease-in-out;
+    }
+
+    .navbar ul.open {
+        max-height: 300px;
+    }
+
+    .social-icons {
+        display: none; /* Hide on small screens */
+    }
+}
+
+
+
+    .details {
+        padding: 120px 10% 2rem;
+        text-align: center;
+        margin-top: 3rem;
+        animation-name: fade;
+        animation-duration: 2s;
+        animation-timing-function: ease;
+    }
+
+    .details h1 {
+        font-size: 3.5rem;
+        font-weight: lighter;
+        margin-bottom: 1rem;
+    }
+
+    .details p {
+        font-size: 1.2rem;
+        font-weight: lighter;
+        line-height: 1.6;
+    }
+
+    .gallery {
+        padding: 2rem 10%;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1.5rem;
+        justify-content: center;
+        animation-name: fade;
+            animation-duration: 2s;
+            animation-timing-function: ease;
+    }
+
+    .gallery img {
+        width: 220px;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: transform 0.3s ease;
+    }
+
+    .gallery img:hover {
+        transform: scale(1.05);
+    }
+
+    .album {
+    position: relative;
+    width: 220px;
+    overflow: hidden;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.album img {
+    width: 100%;
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+.album:hover img {
+    transform: scale(1.05);
+}
+
+.album .overlay {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  font-size: 1.2rem;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  text-shadow: 0 0 5px black;
+  font-family: Arial, Helvetica, sans-serif;
+            font-weight: lighter;
+}
+
+.album:hover .overlay {
+  opacity: 1;
+}
+
+
+    .footer {
+      padding: 2rem 10%;
+      font-size: 1rem;
+      font-family: Arial, Helvetica, sans-serif;
+            font-weight: lighter;
+      margin-top: 3rem;
+      animation-name: fade;
+            animation-duration: 2s;
+            animation-timing-function: ease;
+    }
+
+    /* Lightbox Styles */
+    .lightbox {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.95);
+      z-index: 9999;
+      justify-content: flex-start;
+      align-items: flex-start;
+      flex-direction: column;
+      padding: 3rem 2rem;
+      overflow-y: auto;
+      animation-name: fade;
+        animation-duration: 1.5s;
+        animation-timing-function: ease;
+    }
+
+    @keyframes fade{
+                0%{opacity: 0;}
+                to{opacity: 1;}
+            }
+
+    .lightbox h2 {
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+      font-family: Arial, Helvetica, sans-serif;
+            font-weight: lighter;
+    }
+
+    .lightbox p.description {
+      font-size: 1rem;
+      margin-bottom: 2rem;
+      max-width: 700px;
+      font-family: Arial, Helvetica, sans-serif;
+            font-weight: lighter;
+    }
+
+    #lightbox-content {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1rem;
+      width: 100%;
+      max-width: 1200px;
+    }
+
+    #lightbox-content img {
+      width: 100%;
+      border-radius: 5px;
+      object-fit: cover;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 20px;
+      right: 30px;
+      background: transparent;
+      color: white;
+      font-size: 2rem;
+      border: none;
+      cursor: pointer;
+    }
+
+    .prev-album {
+  position: fixed;
+  bottom: 30px;
+  left: 30px;
+  background: gray;
+  color: white;
+  border: none;
+  padding: 0.7rem 1.2rem;
+  font-size: 1rem;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.next-album {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  background: gray;
+  color: white;
+  border: none;
+  padding: 0.7rem 1.2rem;
+  font-size: 1rem;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+    @media (max-width: 600px) {
+      .lightbox h2 {
+        font-size: 1.5rem;
+      }
+
+      .lightbox p.description {
+        font-size: 0.95rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar">
+    <div class="logo">
+        <a href="home.html">A's Photography</a>
+    </div>
+    <div class="menu-toggle" id="menu-toggle">
+        <i class="fas fa-bars"></i>
+    </div>
+    <ul id="nav-links">
+        <li><a href="about.html">About</a></li>
+        <li><a href="portfolio.html">Portfolio</a></li>
+        <li><a href="bookings.html">Bookings</a></li>
+        <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <div class="social-icons">
+        <i class="fa-brands fa-facebook-f fa-xl"></i>
+        <i class="fa-brands fa-instagram fa-xl"></i>
+    </div>
+</nav>
+
+<!-- Hero Section -->
+<section class="details">
+  <h1>Recent Works</h1>
+  <p>Welcome to my portfolio. Here you’ll find a selection of my work. Explore my <br>
+    projects to learn more about what I do.</p>
+</section>
+
+<!-- Album Gallery -->
+<section class="gallery">
+    <div class="album" onclick="openAlbum('album1')">
+      <img src="studio1.jpeg" alt="Album 1">
+      <div class="overlay">Casual Studio Portraits</div>
+    </div>
+    <div class="album" onclick="openAlbum('album2')">
+      <img src="couple3.jpeg" alt="Album 2">
+      <div class="overlay">Couple</div>
+    </div>
+    <div class="album" onclick="openAlbum('album3')">
+      <img src="famIndoor7.jpeg" alt="Album 3">
+      <div class="overlay">Family Shoot: Indoor</div>
+    </div>
+    <div class="album" onclick="openAlbum('album4')">
+        <img src="fam14.jpeg" alt="Album 4">
+        <div class="overlay">Family Shoot: Outdoor</div>
+      </div>
+  </section>
+  
+
+<!-- Custom Lightbox -->
+<div id="lightbox" class="lightbox">
+  <button class="close-btn" onclick="closeLightbox()">×</button>
+  <h2 id="album-title"></h2>
+  <p class="description" id="album-description"></p>
+  <div id="lightbox-content"></div>
+  <button class="prev-album" onclick="previousAlbum()">Previous Album</button>
+  <button class="next-album" onclick="nextAlbum()">Next Album</button>
+</div>
+
+<!-- Footer -->
+<footer class="footer">
+  <p>A's Photography © 2025 All rights reserved.<br>
+  Studio location: San Jose, Aurora, Zamboanga Del Sur</p>
+</footer>
+
+<!-- JavaScript -->
+<script>
+  const toggle = document.getElementById('menu-toggle');
+  const navLinks = document.getElementById('nav-links');
+
+  const albums = {
+    album1: {
+      title: "Studio Shoot: Casual Studio Portraits",
+      description: "A collection of portraits capturing genuine emotions, lighting techniques, and personality.",
+      photos: [
+        'studio1.jpeg',
+        'studio2.jpeg',
+        'studio3.jpeg',
+        'studio4.jpeg',
+        'studio5.jpeg',
+        'studio6.jpeg',
+        'studio7.jpeg',
+        'studio8.jpeg',
+        'studio9.jpeg',
+        'studio10.jpeg',
+        'studio11.jpeg',
+        'studio12.jpeg',
+        'studio13.jpeg',
+        'studio14.jpeg',
+        'studio15.jpeg'
+      ]
+    },
+    album2: {
+      title: "Couple",
+      description: "Two souls, one love, Making memories, one shot at a time, Happily ever after starts here at A's photography.",
+      photos: [
+        'couple1.jpeg',
+        'couple2.jpeg',
+        'couple3.jpeg'
+      ]
+    },
+    album3: {
+      title: "Family Shoot: Indoor",
+      description: "Indoor service showcases our dedication to capturing your cherished moments in beautiful indoor settings. As a local business, we strive to provide professional photography services that celebrate family bonds and create lasting memories for our valued customers..",
+      photos: [
+        'famIndoor1.jpeg',
+        'famIndoor2.jpeg',
+        'famIndoor3.jpeg',
+        'famIndoor4.jpeg',
+        'famIndoor5.jpeg',
+        'famIndoor6.jpeg',
+        'famIndoor7.jpeg',
+        'famIndoor8.jpeg',
+        'famIndoor9.jpeg',
+        'famIndoor10.jpeg',
+        'famIndoor11.jpeg',
+        'famIndoor12.jpeg',
+        'famIndoor13.jpeg',
+        'famIndoor14.jpeg',
+        'famIndoor16.jpeg',
+        'famIndoor17.jpeg',
+        'famIndoor18.jpeg',
+        'famIndoor19.jpeg'
+      ]
+    },
+    album4: {
+      title: "Family Shoot: Outdoor",
+      description: "Outdoor service showcases our dedication to capturing your cherished moments in beautiful outdoor settings. As a local business, we strive to provide professional photography services that celebrate family bonds and create lasting memories for our valued customers.",
+      photos: [
+        'fam1.jpeg',
+        'fam2.jpeg',
+        'fam3.jpeg',
+        'fam4.jpeg',
+        'fam5.jpeg',
+        'fam6.jpeg',
+        'fam7.jpeg',
+        'fam8.jpeg',
+        'fam9.jpeg',
+        'fam10.jpeg',
+        'fam11.jpeg',
+        'fam12.jpeg',
+        'fam13.jpeg',
+        'fam15.jpeg',
+        'fam16.jpeg',
+        'fam17.jpeg',
+        'fam18.jpeg',
+        'fam20.jpeg'
+      ]
+    }
+  };
+
+  const albumOrder = ['album1', 'album2', 'album3', 'album4'];
+  let currentAlbum = '';
+
+  toggle.addEventListener('click', () => {
+    navLinks.classList.toggle('open');
+  });
+
+  function openAlbum(albumKey) {
+  currentAlbum = albumKey;
+  const album = albums[albumKey];
+
+  const title = document.getElementById('album-title');
+  const description = document.getElementById('album-description');
+  const contentDiv = document.getElementById('lightbox-content');
+
+  // Reset fade animation
+  title.style.animation = 'none';
+  description.style.animation = 'none';
+  contentDiv.style.animation = 'none';
+
+  // Trigger reflow to restart animation
+  void title.offsetWidth;
+  void description.offsetWidth;
+  void contentDiv.offsetWidth;
+
+  // Re-apply animation
+  title.style.animation = 'fade 1.5s ease';
+  description.style.animation = 'fade 1.5s ease';
+  contentDiv.style.animation = 'fade 1.5s ease';
+
+  // Update content
+  title.textContent = album.title;
+  description.textContent = album.description;
+
+  contentDiv.innerHTML = '';
+  album.photos.forEach(photo => {
+    const img = document.createElement('img');
+    img.src = photo;
+    img.alt = album.title;
+    contentDiv.appendChild(img);
+  });
+
+  document.getElementById('lightbox').style.display = 'flex';
+}
+
+
+  function closeLightbox() {
+document.getElementById('lightbox').style.display = 'none';
+}
+
+function nextAlbum() {
+const currentIndex = albumOrder.indexOf(currentAlbum);
+const nextIndex = (currentIndex + 1) % albumOrder.length;
+openAlbum(albumOrder[nextIndex]);
+}
+function previousAlbum() {
+  const currentIndex = albumOrder.indexOf(currentAlbum);
+  const prevIndex = (currentIndex - 1 + albumOrder.length) % albumOrder.length;
+  openAlbum(albumOrder[prevIndex]);
+}
+
+
+        toggle.addEventListener('click', () => {
+            navLinks.classList.toggle('open');
+        });
+
+        let lastScrollTop = 0;
+        const navbar = document.querySelector('.navbar');
+
+        window.addEventListener('scroll', () => {
+            let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+            if (scrollTop > lastScrollTop) {
+                navbar.style.top = "-100px";
+            } else {
+                navbar.style.top = "0";
+            }
+
+            lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+        });
+
+
+</script>
+
+</body>
+</html>

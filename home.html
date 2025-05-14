@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/15f5047879.js" crossorigin="anonymous"></script>
+    <title>Home</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-image: url(photo2.jpeg);
+            color: white;
+            font-family: Arial, Helvetica, sans-serif;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-attachment: fixed;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            z-index: 999;
+            margin-top: 3rem;
+            text-shadow: 0px 0px 10px black;
+        }
+
+        .logo a {
+            font-size: 2rem;
+            color: white;
+            text-decoration: none;
+            font-family: Arial, Helvetica, sans-serif;
+            font-weight: lighter;
+            margin-left: 3rem;
+        }
+
+        .navbar ul {
+            list-style: none;
+            display: flex;
+            gap: 4rem;
+            margin-left: 16rem;
+        }
+
+        .navbar ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1rem;
+            font-family: Arial, Helvetica, sans-serif;
+            font-weight: lighter;
+        }
+
+        .navbar ul li a:hover {
+            color: rgb(247, 246, 155);
+        }
+
+        /* Hamburger Menu Icon */
+        .menu-toggle {
+            display: none;
+            font-size: 1.8rem;
+            color: white;
+            cursor: pointer;
+            margin: auto;
+        }
+
+        /* Responsive Menu */
+        @media (max-width: 768px) {
+            .navbar ul {
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: rgba(0, 0, 0, 0.95);
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.3s ease-in-out;
+            }
+
+            .navbar ul.open {
+                max-height: 300px;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            /* Hide social media icons on small screens */
+    .social-icons {
+        display: none;
+    }
+
+            .navbar ul li a {
+                font-size: 1.2rem;
+                padding: 1rem;
+            }
+        }
+
+        .fa-brands.fa-facebook-f.fa-xl {
+            color: white;
+            margin-right: 1rem;
+        }
+
+        .fa-brands.fa-instagram.fa-xl {
+            color: white;
+        }
+
+        .details {
+            padding: 120px 10% 2rem;
+            text-shadow: 0px 0px 10px black;
+            animation-duration: 2s;
+            animation-timing-function: ease;
+            animation-name: tae, fade;
+        }
+
+        .details h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            font-family: Arial, Helvetica, sans-serif;
+            font-weight: lighter;
+            margin-left: 4.8rem;
+            margin-top: 8rem;
+        }
+
+        .details p {
+            font-size: 1.5rem;
+            line-height: 1.6;
+            font-family: Arial, Helvetica, sans-serif;
+            font-weight: lighter;
+            margin-left: 4.8rem;
+            margin-top: 1rem;
+            word-spacing: 0.4cm;
+            letter-spacing: 0.3cm;
+        }
+
+        .footer {
+            padding: 2rem 10%;
+            font-size: 1rem;
+            margin-top: 10rem;
+            font-family: Arial, Helvetica, sans-serif;
+            font-weight: lighter;
+            text-shadow: 0px 0px 10px black;
+            animation-name: fade;
+            animation-duration: 2s;
+            animation-timing-function: ease;
+        }
+
+        @keyframes fade {
+            0% { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes tae {
+            from { transform: translateY(300px); }
+            to { transform: translateY(0px); }
+        }
+
+        /* ----- SMALL SCREEN (Mobile) ----- */
+        @media (max-width: 480px) {
+            .details {
+                padding: 60px 5% 2rem;
+            }
+
+            .details h1 {
+                font-size: 2.2rem;
+                margin-left: 2rem;
+                text-align: center;
+            }
+
+            .details p {
+                font-size: 1.2rem;
+                margin-left: 2rem;
+                margin-top: 1rem;
+                word-spacing: 0.3cm;
+                letter-spacing: 0.2cm;
+                text-align: center;
+            }
+
+            .navbar {
+                padding: 1rem;
+                margin-top: 2rem;
+            }
+
+            .navbar ul {
+                gap: 2rem;
+            }
+
+            .navbar ul li a {
+                font-size: 1.2rem;
+            }
+
+            .logo a {
+                font-size: 1.5rem;
+                margin-left: 1rem;
+            }
+
+            .footer {
+                padding: 1rem;
+                font-size: 0.9rem;
+                text-align: center;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">
+            <a href="home.html">A's Photography</a>
+        </div>
+        <div class="menu-toggle" id="menu-toggle">
+            <i class="fas fa-bars"></i>
+        </div>
+        <ul id="nav-links">
+            <li><a href="about.html">About</a></li>
+            <li><a href="portfolio.html">Portfolio</a></li>
+            <li><a href="bookings.html">Bookings</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <div class="social-icons">
+            <i class="fa-brands fa-facebook-f fa-xl"></i>
+            <i class="fa-brands fa-instagram fa-xl"></i>
+        </div>
+    </nav>
+
+    <div class="details">
+        <h1>Welcome to<br>A's Photography</h1>
+        <p>Capturing Moments,<br>Creating Memories</p>
+    </div>
+
+    <footer class="footer">
+        <p>A's Photography © 2025 All rights reserved.<br>
+        Studio location: San Jose, Aurora, Zamboanga Del Sur</p>
+    </footer>
+
+    <script>
+        const toggle = document.getElementById('menu-toggle');
+        const navLinks = document.getElementById('nav-links');
+
+        toggle.addEventListener('click', () => {
+            navLinks.classList.toggle('open');
+        });
+    </script>
+</body>
+</html>
